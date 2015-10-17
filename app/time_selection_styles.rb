@@ -6,30 +6,54 @@ module TimeSelectionStyles
     background_color(Colors::Background)
   end
 
+  def time_tile_return_time_style
+    font(Fonts::TimeTileReturnTime)
+    constraints do
+      center.equals(:superview)
+    end
+  end
+
+  def time_tile_time_range_style
+    font(Fonts::TimeTileTimeRange)
+    constraints do
+      top.equals(nearest(:time_tile_return_time), :bottom).plus(3)
+      center_x.equals(:superview, :center_x)
+    end
+  end
+
   def location_icon_style
     image("location-icon".uiimage)
     constraints do
-      top(80)
+      top(100)
       left(GutterWidth * 2)
-      height(20)
+      height(15)
       width(:scale)
     end
   end
 
   def current_location_style
-    text "129 Kingston St."
-    color(Colors::BackgroundText)
-    font()
+    color(Colors::BackgroundTextLight)
+    font(:bold.uifont(15))
     constraints do
-      left.equals(:location_icon, :right).plus(30)
+      left.equals(:location_icon, :right).plus(15)
       bottom.equals(:location_icon)
+    end
+  end
+
+  def get_me_back_here_by_style
+    text "Get me back here by :"
+    color(Colors::BackgroundTextHeavy)
+    font(:bold.uifont(20))
+    constraints do
+      top.equals(:location_icon, :bottom).plus(30)
+      left.equals(:top_left_time_tile)
     end
   end
 
   def top_left_time_tile_style
     background_color(Colors::TimeTile)
     constraints do
-      top.equals(:superview).plus(200)
+      top.equals(:get_me_back_here_by, :bottom).plus(20)
       left.equals(:superview).plus(GutterWidth)
       width.equals(:top_right_time_tile)
       right.equals(:top_right_time_tile, :left).minus(TimeTileMargin)
